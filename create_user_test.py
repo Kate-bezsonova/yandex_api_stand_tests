@@ -21,8 +21,12 @@ def negative_assert_symbol(first_name):
 
 def positive_assert(first_name):
 
-    user_body = get_user_body(first_name)           # В переменную user_body сохраняется обновленное тело запроса
-    user_response = sender_stand_request.post_new_user(user_body)   # В переменную user_response сохраняется результат запроса на создание пользователя:
+    user_body = get_user_body(first_name)# В переменную user_body сохраняется обновленное тело запроса
+    user_response = sender_stand_request.post_new_user(user_body) # В переменную user_response сохраняется результат запроса на создание пользователя:
+    print("response")
+    print(user_response)
+    print("response code")
+    print(user_response.status_code)
     assert user_response.status_code == 201                         # Проверяется, что код ответа равен 201
     assert user_response.json()["authToken"] != ""                  # Проверяется, что в ответе есть поле authToken, и оно не пустое
     users_table_response = sender_stand_request.get_users_table()   # В переменную users_table_response сохраняется результат запроса на получение данных из таблицы user_model
